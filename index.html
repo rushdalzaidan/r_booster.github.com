@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>R_Booster</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0d1117;
+            --main-color: #ffffff;
+            --accent-color: #007bff;
+            --success-color: #28a745;
+            --text-color-light: #b3c5d9;
+            --header-bg: #161b22;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color-light);
+            font-family: 'Cairo', sans-serif;
+            line-height: 1.8;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Poppins', 'Cairo', sans-serif;
+            color: var(--main-color);
+        }
+
+        header {
+            width: 100%;
+            height: 450px;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/cover.png') no-repeat center center/cover;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            animation: fadeIn 2s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        header .logo-hero {
+            max-width: 150px;
+            margin-bottom: 20px;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 123, 255, 0.5);
+            animation: bounceIn 1s ease-out;
+        }
+        @keyframes bounceIn {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        header h1 {
+            font-size: 3rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: #ccc;
+        }
+
+        nav {
+            background: var(--header-bg);
+            padding: 15px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        nav .lang-switcher {
+            position: absolute;
+            left: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        nav .lang-switcher button {
+            background: none;
+            border: 1px solid var(--text-color-light);
+            color: var(--text-color-light);
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        nav .lang-switcher button.active,
+        nav .lang-switcher button:hover {
+            background-color: var(--accent-color);
+            color: var(--main-color);
+            border-color: var(--accent-color);
+        }
+
+        nav a {
+            color: var(--main-color);
+            text-decoration: none;
+            font-weight: 600;
+            font-family: 'Poppins', 'Cairo', sans-serif;
+            padding: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: var(--accent-color);
+        }
+
+        .section {
+            padding: 60px 20px;
+            max-width: 1100px;
+            margin: auto;
+            text-align: right;
+        }
+        
+        .lang-en { display: none; }
+        .lang-ar { display: block; }
+        
+        .section-header {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 10px;
+            display: inline-block;
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            margin-top: 30px;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: var(--main-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-download {
+            background-color: var(--accent-color);
+        }
+
+        .btn-donate {
+            background-color: var(--success-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .feature-item {
+            background-color: var(--header-bg);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-item h3 {
+            margin-bottom: 10px;
+        }
+
+        .screenshots-container {
+            text-align: center;
+        }
+        
+        .screenshot-img {
+            max-width: 800px;
+            width: 100%;
+            border-radius: 12px;
+            border: 3px solid var(--accent-color);
+            transition: transform 0.3s ease;
+            margin-top: 30px;
+        }
+
+        .important-notes ol {
+            padding-right: 25px;
+        }
+        .important-notes li {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .contact-info a {
+            color: var(--accent-color);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .contact-info a:hover {
+            color: var(--success-color);
+        }
+
+        footer {
+            background: var(--header-bg);
+            padding: 30px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.2rem;
+            }
+            .section-header {
+                font-size: 2rem;
+            }
+            .buttons-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <img class="logo-hero" src="images/icon.png" alt="Program Logo">
+        <div id="header-text-ar" class="lang-ar">
+            <h1>R_Booster</h1>
+            <p>منصة أدواتك الذكية لتحسين أداء النظام</p>
+        </div>
+        <div id="header-text-en" class="lang-en">
+            <h1>R_Booster</h1>
+            <p>Your platform for smart system optimization tools</p>
+        </div>
+    </header>
+
+    <nav>
+        <div class="lang-switcher">
+            <button id="lang-ar-btn" class="active">العربية</button>
+            <button id="lang-en-btn">English</button>
+        </div>
+        <a href="#about"><span class="lang-ar">حول</span><span class="lang-en">About</span></a>
+        <a href="#features"><span class="lang-ar">الأدوات</span><span class="lang-en">Tools</span></a>
+        <a href="#screenshots"><span class="lang-ar">لقطة شاشة</span><span class="lang-en">Screenshot</span></a>
+        <a href="#notes"><span class="lang-ar">ملاحظات</span><span class="lang-en">Notes</span></a>
+        <a href="#download"><span class="lang-ar">تحميل</span><span class="lang-en">Download</span></a>
+        <a href="#contact"><span class="lang-ar">تواصل</span><span class="lang-en">Contact</span></a>
+    </nav>
+
+    <section class="section" id="about">
+        <div class="lang-ar" style="text-align: right;">
+            <h2 class="section-header">حول برنامج R_Booster V1.0</h2>
+            <p>
+                R_Booster V1.0 هو برنامجنا الأول، مصمم خصيصاً ليمنحك تحكماً كاملاً بأداء نظامك. بضغطة زر واحدة، يمكنك تنظيف وتسريع جهازك وتخصيصه لأفضل تجربة ممكنة، سواء للعمل أو للألعاب. واجهة البرنامج الأنيقة والمستوحاة من تصميم Windows 11 تجعل كل عملية سهلة وممتعة.
+            </p>
+        </div>
+        <div class="lang-en" style="text-align: left;">
+            <h2 class="section-header">About R_Booster V1.0</h2>
+            <p>
+                R_Booster V1.0 is our first program, specifically designed to give you complete control over your system's performance. With a single click, you can clean, speed up, and optimize your PC for the best possible experience, whether for work or gaming. The program's sleek, Windows 11-inspired interface makes every operation easy and enjoyable.
+            </p>
+        </div>
+    </section>
+
+    <section class="section" id="features">
+        <h2 class="section-header"><span class="lang-ar">أدوات البرنامج</span><span class="lang-en">Program Tools</span></h2>
+        <div class="features-grid">
+            <div class="feature-item">
+                <h3 class="lang-ar">تنظيف الرام بشكل عميق</h3>
+                <h3 class="lang-en">Smart RAM Cleaner</h3>
+                <p class="lang-ar">يحرر الذاكرة العشوائية لتحسين سرعة وأداء البرامج والألعاب، مما يمنحك تجربة استخدام أكثر سلاسة وخالية من التباطؤ.</p>
+                <p class="lang-en">Frees up RAM to improve the speed and performance of programs and games, giving you a smoother, lag-free experience.</p>
+            </div>
+            <div class="feature-item">
+                <h3 class="lang-ar">تنظيف الملفات المؤقتة</h3>
+                <h3 class="lang-en">Junk Files Cleaner</h3>
+                <p class="lang-ar">يزيل الملفات غير الضرورية التي تتراكم في النظام مع مرور الوقت، مما يوفر مساحة تخزين قيمة ويحسن سرعة النظام بشكل ملحوظ.</p>
+                <p class="lang-en">Removes unnecessary files that accumulate in the system over time, providing valuable storage space and significantly improving system speed.</p>
+            </div>
+            <div class="feature-item">
+                <h3 class="lang-ar">تصليح الويندوز</h3>
+                <h3 class="lang-en">Fix Windows Issues</h3>
+                <p class="lang-ar">يقوم بفحص وإصلاح المشاكل الشائعة في نظام التشغيل، لضمان استقرار النظام وعمله دون أي أعطال مفاجئة.</p>
+                <p class="lang-en">Scans and fixes common operating system problems, ensuring system stability and operation without unexpected crashes.</p>
+            </div>
+            <div class="feature-item">
+                <h3 class="lang-ar">إعادة ضبط إعدادات الشبكة</h3>
+                <h3 class="lang-en">Internet Optimization</h3>
+                <p class="lang-ar">يساعد في إعادة ضبط إعدادات الشبكة إلى حالتها الافتراضية، مما يحل مشاكل الاتصال البطيء أو غير المستقر ويعيد سرعة الإنترنت إلى طبيعتها.</p>
+                <p class="lang-en">Helps reset network settings to their default state, resolving slow or unstable connections and restoring normal internet speed.</p>
+            </div>
+            <div class="feature-item">
+                <h3 class="lang-ar">مسرع الألعاب</h3>
+                <h3 class="lang-en">Game Performance Boost</h3>
+                <p class="lang-ar">يخصص موارد النظام للألعاب لضمان أعلى أداء ممكن، ويقلل من استهلاك الموارد من قبل البرامج الأخرى للحصول على تجربة ألعاب سلسة وخالية من التقطيع.</p>
+                <p class="lang-en">Allocates system resources for games to ensure the highest possible performance and reduces resource consumption by other programs for a smooth, lag-free gaming experience.</p>
+            </div>
+            <div class="feature-item">
+                <h3 class="lang-ar">إعادة تشغيل كرت الشاشة</h3>
+                <h3 class="lang-en">Restart Display Driver</h3>
+                <p class="lang-ar">حل سريع للمشاكل الرسومية المؤقتة، حيث يقوم بإعادة تشغيل تعريف كرت الشاشة دون الحاجة لإعادة تشغيل النظام بأكمله.</p>
+                <p class="lang-en">A quick fix for temporary graphical issues, restarting the display driver without the need to reboot the entire system.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="screenshots">
+        <h2 class="section-header"><span class="lang-ar">لقطة شاشة للبرنامج</span><span class="lang-en">Program Screenshot</span></h2>
+        <div class="screenshots-container">
+            <img class="screenshot-img" src="images/screenshot.png" alt="واجهة برنامج R_Booster V1.0">
+        </div>
+    </section>
+
+    <section class="section" id="notes">
+        <div class="lang-ar" style="text-align: right;">
+            <h2 class="section-header">ملاحظات مهمة</h2>
+            <p>لضمان أفضل أداء للبرنامج والاستفادة الكاملة من أدواته، يرجى الانتباه إلى الملاحظات التالية:</p>
+            <ol class="important-notes">
+                <li>يجب تشغيل البرنامج **كمسؤول** لكي تعمل جميع الأدوات بسلاسة.</li>
+                <li>في حال لم تعمل أداة حذف الملفات المؤقتة، ينصح بتشغيل أداة **إصلاح الويندوز** ثم المحاولة مرة أخرى.</li>
+                <li>ينصح **بإعادة تشغيل النظام** بعد استخدام أداة **إصلاح الويندوز**.</li>
+                <li>ينصح **بإعادة تشغيل النظام** بعد استخدام أداة **إعادة ضبط إعدادات الشبكة**.</li>
+            </ol>
+        </div>
+        <div class="lang-en" style="text-align: left;">
+            <h2 class="section-header">Important Notes</h2>
+            <p>To ensure the best performance of the program and to fully benefit from its tools, please pay attention to the following notes:</p>
+            <ol class="important-notes">
+                <li>The program must be run **as an administrator** for all tools to function smoothly.</li>
+                <li>If the junk file cleaner tool does not work, it is recommended to run the **Windows Repair** tool and then try again.</li>
+                <li>It is recommended to **restart the system** after using the **Windows Repair** tool.</li>
+                <li>It is recommended to **restart the system** after using the **Network Settings Reset** tool.</li>
+            </ol>
+        </div>
+    </section>
+
+    <section class="section" id="download">
+        <h2 class="section-header"><span class="lang-ar">تحميل البرنامج</span><span class="lang-en">Download Program</span></h2>
+        <div class="lang-ar">
+            <p>
+                🔽 الإصدار 1.0 – 2 أغسطس 2025<br>
+                📦 R_Booster_v1.0.exe (2.5 MB)<br>
+                💡 التحديثات: تحسين الأداء، إصلاح بعض الأعطال
+            </p>
+        </div>
+        <div class="lang-en">
+            <p>
+                🔽 Version 1.0 – August 2, 2025<br>
+                📦 R_Booster_v1.0.exe (2.5 MB)<br>
+                💡 Updates: Performance improvements, bug fixes
+            </p>
+        </div>
+        <div class="buttons-container">
+            <a class="btn btn-download" href="https://www.mediafire.com/file/mffce20a9kvw5ib/R_boosterv1.0.rar/file"><span class="lang-ar">تحميل الآن</span><span class="lang-en">Download Now</span></a>
+            <a class="btn btn-donate" href=""><span class="lang-ar">تبرع</span><span class="lang-en">Donate</span></a>
+        </div>
+        <p style="margin-top: 10px;" class="lang-ar">تبرع لكي نستمر في التطور وتقديم الأفضل لكم. شكراً لدعمكم!</p>
+        <p style="margin-top: 10px;" class="lang-en">Donate to help us continue developing and providing the best for you. Thank you for your support!</p>
+    </section>
+
+    <section class="section" id="contact">
+        <h2 class="section-header"><span class="lang-ar">تواصل معنا</span><span class="lang-en">Contact Us</span></h2>
+        <p class="contact-info">
+            📧 <span class="lang-ar">البريد الإلكتروني:</span><span class="lang-en">Email:</span> <a href="mailto:rushd.alzaidan@gmail.com">rushd.alzaidan@gmail.com</a><br>
+            💬 <span class="lang-ar">ديسكورد:</span><span class="lang-en">Discord:</span> <a href="https://discord.com/channels/1062337330947571783/1400776854218084443">discord.com/channels/1062337330947571783/...</a><br>
+            📸 <span class="lang-ar">انستجرام:</span><span class="lang-en">Instagram:</span> <a href="https://instagram.com/rushd_alzaidan">rushd_alzaidan</a><br>
+            ❤️ <span class="lang-ar">تبرع:</span><span class="lang-en">Donate:</span> <a href="PUT-DONATE-LINK-HERE"><span class="lang-ar">تبرع من هنا</span><span class="lang-en">Donate here</span></a>
+        </p>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 R_Booster. <span class="lang-ar">جميع الحقوق محفوظة</span><span class="lang-en">All rights reserved.</span></p>
+    </footer>
+    
+    <script>
+        const langArBtn = document.getElementById('lang-ar-btn');
+        const langEnBtn = document.getElementById('lang-en-btn');
+        const langElementsAr = document.querySelectorAll('.lang-ar');
+        const langElementsEn = document.querySelectorAll('.lang-en');
+
+        function setLanguage(lang) {
+            if (lang === 'ar') {
+                document.documentElement.lang = 'ar';
+                document.documentElement.dir = 'rtl';
+                langElementsAr.forEach(el => el.style.display = 'block');
+                langElementsEn.forEach(el => el.style.display = 'none');
+                langArBtn.classList.add('active');
+                langEnBtn.classList.remove('active');
+            } else if (lang === 'en') {
+                document.documentElement.lang = 'en';
+                document.documentElement.dir = 'ltr';
+                langElementsAr.forEach(el => el.style.display = 'none');
+                langElementsEn.forEach(el => el.style.display = 'block');
+                langEnBtn.classList.add('active');
+                langArBtn.classList.remove('active');
+            }
+        }
+
+        langArBtn.addEventListener('click', () => setLanguage('ar'));
+        langEnBtn.addEventListener('click', () => setLanguage('en'));
+        
+        // Initial setup based on browser's default language
+        const userLang = navigator.language.slice(0, 2);
+        if (userLang === 'en') {
+            setLanguage('en');
+        } else {
+            setLanguage('ar');
+        }
+    </script>
+</body>
+</html>
